@@ -1,36 +1,44 @@
 package ru.siksmfp.kotlin.streams
 
 import java.nio.file.Files
+import java.nio.file.Path
 import java.nio.file.Paths
 
-class DirectoryReader(
-        private val directoryForEncrypt: String) {
+class DirectoryReader(val directory: String) {
 
-    private val fileList = ArrayList<String>()
+    private val fileList = ArrayList<Path>()
+    private var dirSubPaths = 0
+    private var currentIndex = -1
+
 
     init {
-        val path = Paths.get(directoryForEncrypt)
-        if (Files.exists(path)) {
-            throw IllegalStateException("Directory $directoryForEncrypt doesn't exists")
+        val path = Paths.get(directory)
+        if (!Files.exists(path)) {
+            throw IllegalStateException("Directory $directory doesn't exists")
         }
 
         if (!Files.isDirectory(path)) {
-            throw IllegalStateException("$directoryForEncrypt is not directory")
+            throw IllegalStateException("$directory is not directory")
         }
 
-        Files.list(Paths.get(directoryForEncrypt)).forEach { f -> fileList.add(f.toFile().name) }
+        dirSubPaths = directory.split("/").size
+
+        Files.walk(Paths.get(directory)).forEach { f -> fileList.add(f) }
     }
 
-    fun readDirectory(directoryForEncrypt: String): ReadableResource {
-        return ReadableResource()
-
+    @Synchronized
+    fun getNextIndex(): Int? {
+        if (currentIndex < fileList.size - 1) {
+            return ++currentIndex
+        }
+        return null
     }
 
-    fun hasNext(): Boolean {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
-    }
-
-    fun getNext(): ReadableResource {
-        return ReadableResource()
+    fun getResource(index: Int): ReadableResource {
+        val filePath = fileList[index]
+        val bufferReader = Files.newBufferedReader(filePath)
+        val fileName = filePath.toFile().path
+        val relativeSubPath = fileName.substring(directory.length, fileName.length)
+        return ReadableResource(bufferReader, relativeSubPath)
     }
 }
