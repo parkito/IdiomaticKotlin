@@ -1,5 +1,6 @@
 package ru.siksmfp.kotlin.streams
 
+import ru.siksmfp.kotlin.streams.resource.ReadableResource
 import java.nio.file.Files
 import java.nio.file.Path
 import java.nio.file.Paths
@@ -7,9 +8,9 @@ import java.nio.file.Paths
 class DirectoryReader(val directory: String) {
 
     private val fileList = ArrayList<Path>()
+    private val currentPath: Path
     private var dirSubPaths = 0
     private var currentIndex = -1
-
 
     init {
         val path = Paths.get(directory)
@@ -21,9 +22,13 @@ class DirectoryReader(val directory: String) {
             throw IllegalStateException("$directory is not directory")
         }
 
+        currentPath = Paths.get(directory)
         dirSubPaths = directory.split("/").size
 
-        Files.walk(Paths.get(directory)).forEach { f -> fileList.add(f) }
+        Files.walk(Paths.get(directory))
+                .filter { f -> f != currentPath }
+                .filter { f -> !f.toFile().isDirectory }
+                .forEach { f -> this.fileList.add(f) }
     }
 
     @Synchronized
@@ -36,9 +41,9 @@ class DirectoryReader(val directory: String) {
 
     fun getResource(index: Int): ReadableResource {
         val filePath = fileList[index]
-        val bufferReader = Files.newBufferedReader(filePath)
+        val fileInput = Files.newInputStream(filePath)
         val fileName = filePath.toFile().path
-        val relativeSubPath = fileName.substring(directory.length, fileName.length)
-        return ReadableResource(bufferReader, relativeSubPath)
+        val relativeSubPath = fileName.substring(directory.length + 1, fileName.length)
+        return ReadableResource(fileInput, relativeSubPath, directory)
     }
 }

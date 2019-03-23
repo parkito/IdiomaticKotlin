@@ -2,7 +2,6 @@ package ru.siksmfp.kotlin.streams
 
 import ru.siksmfp.kotlin.streams.encryptor.Algorithm
 import ru.siksmfp.kotlin.streams.encryptor.Algorithm.NOON
-import ru.siksmfp.kotlin.streams.encryptor.DirectoryWriter
 import ru.siksmfp.kotlin.streams.encryptor.EncryptorFactory
 
 
@@ -17,7 +16,7 @@ fun main(args: Array<String>) {
     val reader = DirectoryReader(directoryForEncrypt)
     val writer = DirectoryWriter(targetPath)
     val algorithm = EncryptorFactory.get(encryptAlgorithms)
-    val compressor = DirectoryCompressor(algorithm)
+    val compressor = DirectoryEncryptor(algorithm)
 
     FileProcessor(reader, writer, compressor).encrypt()
 }
