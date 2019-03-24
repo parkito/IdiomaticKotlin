@@ -7,13 +7,6 @@ import ru.siksmfp.kotlin.streams.resource.ReadableResource
 class DirectoryEncryptor(val encryptor: DirectoryEncryptor) {
 
     fun getResource(resource: ReadableResource): EncryptedResource {
-        while (true) {
-            val fileChunk = resource.input.readNBytes(Configuration.getBufferSize())
-            if (fileChunk.isEmpty()) {
-                break
-            }
-        }
-
-        return EncryptedResource("")//future
+        return EncryptedResource(resource, encryptor)
     }
 }
