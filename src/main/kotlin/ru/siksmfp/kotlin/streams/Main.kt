@@ -2,7 +2,6 @@ package ru.siksmfp.kotlin.streams
 
 import ru.siksmfp.kotlin.streams.archive.ArchiveFileBuilder
 import ru.siksmfp.kotlin.streams.archive.ArchiveFileWriter
-import ru.siksmfp.kotlin.streams.context.FileEntryQueue
 import ru.siksmfp.kotlin.streams.directory.DirectoryEncryptor
 import ru.siksmfp.kotlin.streams.directory.DirectoryReader
 import ru.siksmfp.kotlin.streams.encryptor.Algorithm
@@ -12,6 +11,10 @@ import ru.siksmfp.kotlin.streams.encryptor.EncryptorFactory
 fun main(args: Array<String>) {
     if (args.isEmpty()) {
         throw IllegalArgumentException("Please enter path to folder")
+    }
+
+    if (args[0] == "-unpack"){
+
     }
 
     val directoryForEncrypt = args[0]

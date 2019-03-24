@@ -5,7 +5,7 @@ import java.nio.file.Files
 import java.nio.file.Path
 import java.nio.file.Paths
 
-class DirectoryReader(val directory: String) {
+class DirectoryReader(private val directory: String) {
 
     private val fileList = ArrayList<Path>()
     private val currentPath: Path
