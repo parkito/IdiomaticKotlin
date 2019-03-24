@@ -1,4 +1,4 @@
-package ru.siksmfp.kotlin.streams
+package ru.siksmfp.kotlin.streams.context
 
 import ru.siksmfp.kotlin.streams.file.FileEntry
 import java.util.concurrent.ConcurrentLinkedQueue

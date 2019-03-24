@@ -8,4 +8,8 @@ data class EncryptedResource(private val readableResource: ReadableResource,
     fun readNBytes(size: Int): ByteArray {
         return encryptor.encryptLine(readableResource.input.readNBytes(size))
     }
+
+    fun getRelativePath(): String {
+        return readableResource.relativeName;
+    }
 }
