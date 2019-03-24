@@ -1,5 +1,6 @@
-package ru.siksmfp.kotlin.streams
+package ru.siksmfp.kotlin.streams.directory
 
+import ru.siksmfp.kotlin.streams.Configuration
 import ru.siksmfp.kotlin.streams.resource.EncryptedResource
 
 class DirectoryWriter(val targetPath: String) {

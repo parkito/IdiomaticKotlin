@@ -1,4 +1,4 @@
-package ru.siksmfp.kotlin.streams
+package ru.siksmfp.kotlin.streams.directory
 
 import ru.siksmfp.kotlin.streams.resource.ReadableResource
 import java.nio.file.Files

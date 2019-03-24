@@ -6,5 +6,4 @@ class KeyEncryptor : DirectoryEncryptor {
     override fun encryptLine(line: ByteArray): ByteArray {
         return line //todo implement encryption
     }
-
 }
