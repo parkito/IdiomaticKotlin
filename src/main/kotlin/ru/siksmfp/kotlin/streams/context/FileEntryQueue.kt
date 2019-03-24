@@ -6,6 +6,10 @@ import java.util.concurrent.ConcurrentLinkedQueue
 object FileEntryQueue {
     private val queue = ConcurrentLinkedQueue<FileEntry>()
 
+    fun size(): Int {
+        return queue.size
+    }
+
     fun add(entry: FileEntry) {
         queue.add(entry)
     }

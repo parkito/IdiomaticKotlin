@@ -1,7 +1,7 @@
 package ru.siksmfp.kotlin.streams.context
 
 object Configuration {
-    private var bufferSize: Int = 4096
+    private var bufferSize: Int = 2048
 
     fun setBufferSize(size: Int) {
         bufferSize = size

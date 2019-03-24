@@ -1,5 +1,6 @@
 package ru.siksmfp.kotlin.streams.file
 
 data class FileEntry(
-        val header: FileHeader,
-        val entryContent: ByteArray) {}
+        public val header: FileHeader,
+        public val entryContent: ByteArray) {
+}
