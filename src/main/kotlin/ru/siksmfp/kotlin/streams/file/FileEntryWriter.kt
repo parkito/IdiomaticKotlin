@@ -12,7 +12,7 @@ class FileEntryWriter {
             if (fileChunk.isEmpty()) {
                 break
             }
-            val fileHeader = FileHeader(resource.getRelativePath(), fileChunkOrder)
+            val fileHeader = FileHeader(resource.getRelativePath(), fileChunkOrder, fileChunk.size)
             val fileEntry = FileEntry(fileHeader, fileChunk)
             FileEntryQueue.add(fileEntry)
             fileChunkOrder++
