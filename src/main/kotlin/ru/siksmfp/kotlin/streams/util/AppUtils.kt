@@ -1,6 +1,5 @@
 package ru.siksmfp.kotlin.streams.util
 
-import ru.siksmfp.kotlin.streams.context.Configuration
 import ru.siksmfp.kotlin.streams.context.Configuration.INT_SIZE
 import java.nio.ByteBuffer
 
@@ -9,6 +8,6 @@ fun intToByteBuffer(int: Int): ByteBuffer {
             .putInt(int)
 }
 
-fun byteArrayToInt(byteArray: ByteArray):Int {
+fun byteArrayToInt(byteArray: ByteArray): Int {
     return ByteBuffer.wrap(byteArray).int
 }

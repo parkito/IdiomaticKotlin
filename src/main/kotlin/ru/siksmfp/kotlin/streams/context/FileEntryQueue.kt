@@ -14,7 +14,7 @@ object FileEntryQueue {
         queue.add(entry)
     }
 
-    fun poll(): FileEntry? {
+    fun poll(): FileEntry {
         return queue.poll()
     }
 }

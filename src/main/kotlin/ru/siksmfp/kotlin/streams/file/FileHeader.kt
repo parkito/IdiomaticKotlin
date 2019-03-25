@@ -1,5 +1,6 @@
 package ru.siksmfp.kotlin.streams.file
 
+import ru.siksmfp.kotlin.streams.context.Configuration.INT_SIZE
 import java.io.Serializable
 
 data class FileHeader(
@@ -9,5 +10,5 @@ data class FileHeader(
 ) : Serializable {
     @Transient
     var headerSize: Int = 0
-        get() = relativePath.length + 8
+        get() = relativePath.length + INT_SIZE * 2
 }
