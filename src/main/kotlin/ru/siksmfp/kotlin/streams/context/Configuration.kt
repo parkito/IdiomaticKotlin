@@ -1,5 +1,6 @@
 package ru.siksmfp.kotlin.streams.context
 
+import ru.siksmfp.kotlin.streams.util.intToByteBuffer
 import java.nio.ByteBuffer
 
 object Configuration {
@@ -26,8 +27,6 @@ object Configuration {
     }
 
     private fun updateSize(size: Int): ByteBuffer {
-        return ByteBuffer.allocate(INT_SIZE)
-                .putInt(size)
-
+        return intToByteBuffer(size)
     }
 }

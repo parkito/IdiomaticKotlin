@@ -6,4 +6,8 @@ data class FileHeader(
         val relativePath: String,
         val orderNumber: Long,
         val bodySize: Int
-) : Serializable
+) : Serializable {
+    @Transient
+    var headerSize: Int = 0
+        get() = relativePath.length + 8
+}
