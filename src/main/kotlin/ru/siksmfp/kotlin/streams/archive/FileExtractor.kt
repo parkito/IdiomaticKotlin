@@ -23,6 +23,8 @@ class FileExtractor(
             channel.write(ByteBuffer.wrap(fileEntry))
         }
 
+        channel.close()
+
     }
 
 }

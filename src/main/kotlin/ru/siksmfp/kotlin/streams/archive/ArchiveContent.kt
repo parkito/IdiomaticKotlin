@@ -22,7 +22,7 @@ class ArchiveContent(targetPath: String) {
             val headerSize = byteArrayToInt(headerByteSize)
             val headerContent = inputStream.readNBytes(headerSize)
             val header = HeaderProcessor.deserializeHeader(headerContent)
-            entryOnNumberMap.merge(header.relativePath, 0, Integer::sum)
+            entryOnNumberMap.merge(header.relativePath, 1, Integer::sum)
             inputStream.skip(header.bodySize.toLong())
         }
     }

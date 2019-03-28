@@ -4,7 +4,7 @@ import ru.siksmfp.kotlin.streams.util.intToByteBuffer
 import java.nio.ByteBuffer
 
 object Configuration {
-    private var bufferSize: Int = 2048
+    private var bufferSize: Int = 2048000
     private var arrayBufferSize: ByteBuffer
 
     init {

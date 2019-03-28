@@ -5,7 +5,7 @@ import java.nio.ByteBuffer
 
 fun intToByteBuffer(int: Int): ByteBuffer {
     return ByteBuffer.allocate(INT_SIZE)
-            .putInt(int)
+            .putInt(int).flip()
 }
 
 fun byteArrayToInt(byteArray: ByteArray): Int {
