@@ -15,8 +15,7 @@ class ArchiveFileExtractor(
             val fileInfo = archiveContent.getNextFile() ?: break
             val inputStream: InputStream = Files.newInputStream(Paths.get(archiveFilePath)) //improve input stream reusing algorithm
             val archiveReader = ArchiveFileReader(fileInfo.key, fileInfo.value, inputStream)
-            val fileExtractor = FileExtractor(archiveReader, targetPath)
-            fileExtractor.extract()
+            FileExtractor(archiveReader, targetPath).extract()
         }
     }
 }

@@ -11,7 +11,7 @@ class ArchiveContent(targetPath: String) {
 
     private val inputStream: InputStream = Files.newInputStream(Paths.get(targetPath))
     private val entryOnNumberMap = LinkedHashMap<String, Int>()
-    private val mapIterator = entryOnNumberMap.iterator()
+    private val mapIterator: Iterator<MutableMap.MutableEntry<String, Int>>
 
     init {
         while (true) {
@@ -25,6 +25,7 @@ class ArchiveContent(targetPath: String) {
             entryOnNumberMap.merge(header.relativePath, 1, Integer::sum)
             inputStream.skip(header.bodySize.toLong())
         }
+        mapIterator = entryOnNumberMap.iterator()
     }
 
     fun getNextFile(): MutableMap.MutableEntry<String, Int>? =
