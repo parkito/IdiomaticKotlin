@@ -7,7 +7,7 @@ import java.io.InputStream
 import java.nio.file.Files
 import java.nio.file.Paths
 
-class ArchiveContent(targetPath: String) {
+class ArchiveFileContent(targetPath: String) {
 
     private val inputStream: InputStream = Files.newInputStream(Paths.get(targetPath))
     private val entryOnNumberMap = LinkedHashMap<String, Int>()

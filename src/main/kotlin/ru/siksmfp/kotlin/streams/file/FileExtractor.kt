@@ -1,5 +1,6 @@
-package ru.siksmfp.kotlin.streams.archive
+package ru.siksmfp.kotlin.streams.file
 
+import ru.siksmfp.kotlin.streams.archive.ArchiveFileReader
 import java.io.RandomAccessFile
 import java.nio.ByteBuffer
 import java.nio.file.Files

@@ -1,5 +1,6 @@
 package ru.siksmfp.kotlin.streams.archive
 
+import ru.siksmfp.kotlin.streams.file.FileExtractor
 import java.io.InputStream
 import java.nio.file.Files
 import java.nio.file.Paths
@@ -8,7 +9,7 @@ class ArchiveFileExtractor(
         private val archiveFilePath: String,
         private val targetPath: String) {
 
-    private val archiveContent = ArchiveContent(archiveFilePath);
+    private val archiveContent = ArchiveFileContent(archiveFilePath);
 
     fun extract() {
         while (true) {

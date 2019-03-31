@@ -7,16 +7,10 @@ import ru.siksmfp.kotlin.streams.directory.DirectoryEncryptor
 import ru.siksmfp.kotlin.streams.directory.DirectoryReader
 import ru.siksmfp.kotlin.streams.encryptor.Algorithm.NOON
 import ru.siksmfp.kotlin.streams.encryptor.EncryptorFactory
-import ru.siksmfp.kotlin.streams.util.byteArrayToInt
-import ru.siksmfp.kotlin.streams.util.intToByteBuffer
-import java.io.RandomAccessFile
-import java.nio.file.Files
-import java.nio.file.Paths
+import ru.siksmfp.kotlin.streams.interpreter.ParameterInterpreter
 
 fun main(args: Array<String>) {
-//    if (args.isEmpty()) {
-//        throw IllegalArgumentException("Please enter path to folder")
-//    }
+
 //
 //    if (args[0] == "-unpack") {
 //
@@ -27,6 +21,9 @@ fun main(args: Array<String>) {
 //    val encryptAlgorithms = if (args.size > 2) Algorithm.valueOf(args[2]) else NOON
 //    val archiveFilePath = ""
 
+    val runScenario = ParameterInterpreter(args).buildScenario()
+    runScenario.action.perform()
+
     val directoryForEncrypt = "/Users/parkito/Downloads/test"
     val targetPath = "/Users/parkito/Downloads/test.arch"
     val archiveFilePath = "/Users/parkito/Downloads/test.arch"
@@ -34,19 +31,11 @@ fun main(args: Array<String>) {
 
     val reader = DirectoryReader(directoryForEncrypt)
     val algorithm = EncryptorFactory.get(NOON)
-    val compressor = DirectoryEncryptor(algorithm)
+    val encryptor = DirectoryEncryptor(algorithm)
 
-//    ArchiveFileBuilder(reader, compressor).startBuilding()
-//    ArchiveFileWriter(targetPath).startWriting()
+    ArchiveFileBuilder(reader, encryptor).startBuilding()
+    ArchiveFileWriter(targetPath).startWriting()
     ArchiveFileExtractor(archiveFilePath, "/Users/parkito/Downloads/tst").extract()
-
-//    val stream = RandomAccessFile("/Users/parkito/Downloads/tst.file", "rw").channel
-//    val a = 123;
-//
-//    stream.write(intToByteBuffer(105))
-//    stream.close()
-//    val result = Files.newInputStream(Paths.get("/Users/parkito/Downloads/tst.file")).readAllBytes()
-//    println(byteArrayToInt(result))
 
     println("Archive successfully created")
 
