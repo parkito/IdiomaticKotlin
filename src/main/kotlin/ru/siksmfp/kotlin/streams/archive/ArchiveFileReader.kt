@@ -11,17 +11,17 @@ class ArchiveFileReader(
         val entries: Int,
         private val inputStream: InputStream) {
 
+    //todo potential infinite loop
     fun readNextEntry(): FileEntry {
-        val headerSize = byteArrayToInt(inputStream.readNBytes(INT_SIZE))
-        val fileHeader = HeaderProcessor.deserializeHeader(inputStream.readNBytes(headerSize))
-        var content: ByteArray? = null
-        if (fileHeader.relativePath == relativePath) {
-            content = inputStream.readNBytes(fileHeader.bodySize)
-        } else {
-            inputStream.skip(fileHeader.bodySize.toLong())
+        while (true) {
+            val headerSize = byteArrayToInt(inputStream.readNBytes(INT_SIZE))
+            val fileHeader = HeaderProcessor.deserializeHeader(inputStream.readNBytes(headerSize))
+            if (fileHeader.relativePath == relativePath) {
+                val content = inputStream.readNBytes(fileHeader.bodySize)
+                return FileEntry(fileHeader, content)
+            } else {
+                inputStream.skip(fileHeader.bodySize.toLong())
+            }
         }
-
-        return FileEntry(fileHeader, content)
     }
-
 }
