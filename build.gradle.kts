@@ -19,6 +19,8 @@ application {
 
 dependencies {
     compile(kotlin("stdlib"))
+    compile("info.picocli:picocli:3.9.5")
+
 }
 
 repositories {
