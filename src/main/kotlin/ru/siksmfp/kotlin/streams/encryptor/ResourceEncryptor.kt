@@ -1,10 +1,10 @@
-package ru.siksmfp.kotlin.streams.directory
+package ru.siksmfp.kotlin.streams.encryptor
 
-import ru.siksmfp.kotlin.streams.encryptor.api.DirectoryEncryptor
+import ru.siksmfp.kotlin.streams.encryptor.api.Encryptor
 import ru.siksmfp.kotlin.streams.resource.EncryptedResource
 import ru.siksmfp.kotlin.streams.resource.ReadableResource
 
-class DirectoryEncryptor(private val encryptor: DirectoryEncryptor) {
+class ResourceEncryptor(private val encryptor: Encryptor) {
 
     fun getResource(resource: ReadableResource): EncryptedResource {
         return EncryptedResource(resource, encryptor)

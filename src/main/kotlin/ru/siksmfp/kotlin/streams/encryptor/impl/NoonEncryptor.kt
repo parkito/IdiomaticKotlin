@@ -1,10 +1,9 @@
 package ru.siksmfp.kotlin.streams.encryptor.impl
 
-import ru.siksmfp.kotlin.streams.encryptor.api.DirectoryEncryptor
+import ru.siksmfp.kotlin.streams.encryptor.api.Encryptor
 
-class NoonEncryptor : DirectoryEncryptor {
-    override fun encryptLine(line: ByteArray): ByteArray {
-        return line
+class NoonEncryptor : Encryptor {
+    override fun encryptChunk(chunk: ByteArray): ByteArray {
+        return chunk
     }
-
 }

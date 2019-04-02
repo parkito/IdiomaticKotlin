@@ -33,4 +33,3 @@ val jar by tasks.getting(Jar::class) {
     into("META-INF") {
     }
 }
-

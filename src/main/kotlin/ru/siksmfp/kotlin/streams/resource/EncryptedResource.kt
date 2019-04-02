@@ -1,12 +1,12 @@
 package ru.siksmfp.kotlin.streams.resource
 
-import ru.siksmfp.kotlin.streams.encryptor.api.DirectoryEncryptor
+import ru.siksmfp.kotlin.streams.encryptor.api.Encryptor
 
 data class EncryptedResource(private val readableResource: ReadableResource,
-                             private val encryptor: DirectoryEncryptor) {
+                             private val encryptor: Encryptor) {
 
     fun readNBytes(size: Int): ByteArray {
-        return encryptor.encryptLine(readableResource.input.readNBytes(size))
+        return encryptor.encryptChunk(readableResource.input.readNBytes(size))
     }
 
     fun getRelativePath(): String {

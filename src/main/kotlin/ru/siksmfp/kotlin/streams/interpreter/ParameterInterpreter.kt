@@ -4,9 +4,9 @@ import picocli.CommandLine
 import ru.siksmfp.kotlin.streams.archive.ArchiveFileBuilder
 import ru.siksmfp.kotlin.streams.archive.ArchiveFileExtractor
 import ru.siksmfp.kotlin.streams.archive.ArchiveFileWriter
-import ru.siksmfp.kotlin.streams.directory.DirectoryEncryptor
+import ru.siksmfp.kotlin.streams.encryptor.ResourceEncryptor
 import ru.siksmfp.kotlin.streams.directory.DirectoryReader
-import ru.siksmfp.kotlin.streams.encryptor.Algorithm
+import ru.siksmfp.kotlin.streams.encryptor.api.Algorithm
 import ru.siksmfp.kotlin.streams.encryptor.EncryptorFactory
 
 class ParameterInterpreter(private val args: Array<String>) {
@@ -28,7 +28,8 @@ class ParameterInterpreter(private val args: Array<String>) {
         } else {
             val reader = DirectoryReader(karchiver.resourceFile)
             val algorithm = EncryptorFactory.get(Algorithm.valueOf(karchiver.algorithm))
-            val encryptor = DirectoryEncryptor(algorithm)
+            val encryptor = ResourceEncryptor(algorithm)
+
             ArchiveFileBuilder(reader, encryptor).startBuilding()
             ArchiveFileWriter(karchiver.targetPath).startWriting()
         }

@@ -1,25 +1,26 @@
 package ru.siksmfp.kotlin.streams.encryptor
 
-import ru.siksmfp.kotlin.streams.encryptor.Algorithm.KEY
-import ru.siksmfp.kotlin.streams.encryptor.Algorithm.NOON
-import ru.siksmfp.kotlin.streams.encryptor.api.DirectoryEncryptor
+import ru.siksmfp.kotlin.streams.encryptor.api.Algorithm
+import ru.siksmfp.kotlin.streams.encryptor.api.Algorithm.KEY
+import ru.siksmfp.kotlin.streams.encryptor.api.Algorithm.NOON
+import ru.siksmfp.kotlin.streams.encryptor.api.Encryptor
 import ru.siksmfp.kotlin.streams.encryptor.impl.KeyEncryptor
 import ru.siksmfp.kotlin.streams.encryptor.impl.NoonEncryptor
 
 object EncryptorFactory {
 
-    private val map: Map<Algorithm, DirectoryEncryptor>
+    private val MAP: Map<Algorithm, Encryptor>
 
     init {
-        map = HashMap()
-        map[NOON] = NoonEncryptor()
-        map[KEY] = KeyEncryptor()
+        MAP = HashMap()
+        MAP[NOON] = NoonEncryptor()
+        MAP[KEY] = KeyEncryptor()
     }
 
-    fun get(algorithm: Algorithm): DirectoryEncryptor {
-        if (map[algorithm] == null) {
+    fun get(algorithm: Algorithm): Encryptor {
+        if (MAP[algorithm] == null) {
             throw IllegalStateException("Unknown encrypting algorithm")
         }
-        return map.getValue(algorithm)
+        return MAP.getValue(algorithm)
     }
 }

@@ -26,9 +26,9 @@ class DirectoryReader(private val directory: String) {
         dirSubPaths = directory.split("/").size
 
         Files.walk(Paths.get(directory))
-                .filter { f -> f != currentPath }
-                .filter { f -> !f.toFile().isDirectory }
-                .forEach { f -> this.fileList.add(f) }
+                .filter { it != currentPath }
+                .filter { !it.toFile().isDirectory }
+                .forEach { fileList.add(it) }
     }
 
     @Synchronized
