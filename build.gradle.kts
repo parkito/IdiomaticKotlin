@@ -20,6 +20,8 @@ application {
 dependencies {
     compile(kotlin("stdlib"))
     compile("info.picocli:picocli:3.9.5")
+    testCompile("org.junit.jupiter:junit-jupiter-engine:5.4.1")
+
 
 }
 
