@@ -9,7 +9,7 @@ class ArchiveFileExtractor(
         private val archiveFilePath: String,
         private val targetPath: String) {
 
-    private val archiveContent = ArchiveFileContent(archiveFilePath);
+    private val archiveContent = ArchiveFileContent(archiveFilePath)
 
     fun extract() {
         while (true) {

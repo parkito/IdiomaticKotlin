@@ -12,9 +12,9 @@ class HeaderProcessor {
         fun serializeHeader(header: FileHeader): ByteArray {
             try {
                 val baos = ByteArrayOutputStream()
-                val ous: ObjectOutput = ObjectOutputStream(baos);
-                ous.writeObject(header);
-                return baos.toByteArray();
+                val ous: ObjectOutput = ObjectOutputStream(baos)
+                ous.writeObject(header)
+                return baos.toByteArray()
             } catch (ex: Exception) {
                 throw IllegalStateException("Can't serialize file header ${header.relativePath}")
             }

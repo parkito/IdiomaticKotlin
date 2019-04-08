@@ -5,6 +5,7 @@ import ru.siksmfp.kotlin.streams.context.FileEntryQueue
 import ru.siksmfp.kotlin.streams.resource.EncryptedResource
 
 class FileEntryWriter {
+
     fun writeResource(resource: EncryptedResource) {
         var fileChunkOrder: Long = 0
         while (true) {

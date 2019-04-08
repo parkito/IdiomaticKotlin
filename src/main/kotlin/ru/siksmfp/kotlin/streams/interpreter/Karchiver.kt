@@ -3,7 +3,7 @@ package ru.siksmfp.kotlin.streams.interpreter
 import picocli.CommandLine
 import java.util.*
 
-class Karchiver() {
+class Karchiver {
 
     @CommandLine.Parameters(description = ["Resource for archiving"], index = "0")
     var resourceFile: String = ""

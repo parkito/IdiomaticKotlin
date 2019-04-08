@@ -10,6 +10,6 @@ data class EncryptedResource(private val readableResource: ReadableResource,
     }
 
     fun getRelativePath(): String {
-        return readableResource.relativeName;
+        return readableResource.relativeName
     }
 }
