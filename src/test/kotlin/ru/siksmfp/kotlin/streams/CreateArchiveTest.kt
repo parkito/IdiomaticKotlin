@@ -3,12 +3,12 @@ package ru.siksmfp.kotlin.streams
 import org.junit.jupiter.api.AfterEach
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
+import ru.siksmfp.kotlin.streams.interpreter.ParameterInterpreter
 import java.io.FileOutputStream
 import java.io.FileWriter
 import java.io.PrintWriter
 import java.nio.file.Files
 import java.nio.file.Paths
-
 
 class CreateArchiveTest {
 
@@ -50,7 +50,8 @@ class CreateArchiveTest {
 
     @Test
     fun writeReadTest() {
-
+        ParameterInterpreter(arrayOf("./mytest", "./mytest.arch")).run()
+        ParameterInterpreter(arrayOf("-e", "./mytest.arch", "./mytest2")).run()
     }
 
     private fun writeCharacterFile(path: String, content: String) {
